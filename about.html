@@ -508,8 +508,8 @@
       <div class="menu-panel menu-panel-2"></div>
       <div class="menu-panel menu-panel-3"></div>
       <ul class="menu-links">
-        <li><a href="index.html"    onclick="closeMenu()">Home</a></li>
-        <li><a href="about.html"    onclick="closeMenu()">About</a></li>
+        <li><a href="index.html"    onclick="navigateTo('index.html')">Home</a></li>
+        <li><a href="about.html"    onclick="navigateTo('about.html')">About</a></li>
         <li><a href="classes.html"  onclick="closeMenu()">Classes</a></li>
         <li><a href="handbook.html" onclick="closeMenu()">Handbook</a></li>
         <li><a href="contact.html"  onclick="closeMenu()">Contact</a></li>
@@ -674,10 +674,19 @@
         document.body.style.overflow = 'hidden';
       }
 
-      function closeMenu() {
+      function closeMenu(callback) {
         hamburger.classList.remove('open');
         menuOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        if (callback) {
+          setTimeout(callback, 650);
+        }
+      }
+
+      function navigateTo(url) {
+        closeMenu(() => {
+          window.location.href = url;
+        });
       }
 
       hamburger.addEventListener('click', () => {

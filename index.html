@@ -436,10 +436,19 @@
         document.body.style.overflow = 'hidden';
       }
 
-      function closeMenu() {
+      function closeMenu(callback) {
         hamburger.classList.remove('open');
         menuOverlay.classList.remove('open');
         document.body.style.overflow = '';
+        if (callback) {
+          setTimeout(callback, 650);
+        }
+      }
+
+      function navigateTo(url) {
+        closeMenu(() => {
+          window.location.href = url;
+        });
       }
 
       hamburger.addEventListener('click', () => {
@@ -453,12 +462,7 @@
         if (ticking) return;
         window.requestAnimationFrame(() => {
           const current = window.scrollY;
-
-          // Scrolled state
           navbar.classList.toggle('scrolled', current > 40);
-
-          // Hide on scroll down, show on scroll up
-          // Don't hide if menu is open
           if (!menuOverlay.classList.contains('open')) {
             if (current > lastScroll && current > 80) {
               navbar.classList.add('hidden');
@@ -466,7 +470,6 @@
               navbar.classList.remove('hidden');
             }
           }
-
           lastScroll = current <= 0 ? 0 : current;
           ticking = false;
         });
