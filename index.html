@@ -28,7 +28,7 @@
       }
 
       /* ── NAVBAR ── */
-      nav {
+    nav {
         position: fixed;
         top: 0;
         left: 0;
@@ -38,33 +38,34 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 24px 0 16px;
+        padding: 0 24px 0 12px;
         background: transparent;
         transition: background 0.4s, transform 0.4s cubic-bezier(.77,0,.175,1);
       }
 
-      nav.scrolled {
+    nav.scrolled {
         background: rgba(21, 17, 32, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
 
-      nav.hidden {
+    nav.hidden {
         transform: translateY(-100%);
       }
 
-      .nav-logo {
+    .nav-logo {
         z-index: 200;
         display: flex;
         align-items: center;
+        line-height: 0;
       }
 
-css    .nav-logo img {
-        height: 22px;
+    .nav-logo img {
+        height: 38px;
         width: auto;
+        max-width: 160px;
         object-fit: contain;
-        transition: opacity 0.3s;
-        margin-left: 0;
+        display: block;
       }
 
       /* ── HAMBURGER ── */
