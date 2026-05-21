@@ -132,7 +132,6 @@
         display: block;
         font-size: clamp(2.4rem, 10vw, 5rem);
         font-family: 'Georgia', serif;
-        font-style: italic;
         color: var(--black);
         text-decoration: none;
         letter-spacing: -0.01em;
@@ -166,6 +165,7 @@
         transform: translateY(0);
       }
 
+      /* ── PAGE HEADER ── */
       .page-header {
         padding: 140px 28px 80px;
         position: relative;
@@ -201,9 +201,9 @@
       }
 
       .page-title {
-        font-size: clamp(2.8rem, 10vw, 5.5rem);
-        font-style: italic;
-        font-weight: normal;
+        font-size: clamp(3.5rem, 10vw, 7rem);
+        font-weight: bold;
+        font-style: normal;
         line-height: 1.05;
         color: var(--light-purple);
         opacity: 0;
@@ -215,6 +215,7 @@
         to   { opacity: 1; transform: translateY(0); }
       }
 
+      /* ── SECTIONS ── */
       .section {
         padding: 80px 28px;
         max-width: 900px;
@@ -229,8 +230,10 @@
         margin-bottom: 40px;
         padding-bottom: 16px;
         border-bottom: 1px solid rgba(58,54,96,0.5);
+        font-style: normal;
       }
 
+      /* ── BIO ── */
       .bio-block {
         display: flex;
         flex-direction: column;
@@ -275,9 +278,9 @@
       .bio-text { flex: 1; }
 
       .bio-name {
-        font-size: clamp(1.8rem, 6vw, 2.6rem);
-        font-style: italic;
-        font-weight: normal;
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        font-weight: bold;
+        font-style: normal;
         color: var(--light-purple);
         line-height: 1.1;
         margin-bottom: 6px;
@@ -289,47 +292,67 @@
         text-transform: uppercase;
         color: var(--contrast);
         margin-bottom: 28px;
+        font-style: normal;
       }
 
       .bio-body {
         font-size: 0.95rem;
         line-height: 1.9;
         color: rgba(206,203,253,0.7);
+        font-style: normal;
       }
 
       .bio-body p + p { margin-top: 16px; }
 
-      .bio-highlight {
-        color: var(--light-purple);
-        font-style: italic;
-      }
-
-      .rule {
-        width: 100%;
-        height: 1px;
-        background: rgba(58,54,96,0.4);
-        max-width: 900px;
-        margin: 0 auto;
-      }
-
-      .story-block { display: flex; flex-direction: column; gap: 24px; }
+      /* ── STORY ── */
+      .story-block { display: flex; flex-direction: column; gap: 20px; }
 
       .story-block p {
         font-size: 0.95rem;
         line-height: 1.95;
         color: rgba(206,203,253,0.7);
+        font-style: normal;
       }
 
       .story-pull {
-        font-size: clamp(1.2rem, 4vw, 1.6rem);
-        font-style: italic;
+        font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+        font-style: normal;
         color: var(--light-purple);
-        line-height: 1.5;
+        line-height: 1.6;
         border-left: 2px solid var(--dark-purple);
         padding-left: 24px;
-        margin: 16px 0;
+        margin: 8px 0;
       }
 
+      /* ── WHAT WE BELIEVE ── */
+      .values-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 8px;
+      }
+
+      .value-item { display: flex; flex-direction: column; gap: 10px; }
+      .value-item.right { text-align: right; }
+
+      .value-title {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        font-weight: bold;
+        font-style: normal;
+        color: var(--light-purple);
+      }
+
+      .value-body {
+        font-size: 0.88rem;
+        line-height: 1.8;
+        color: rgba(206,203,253,0.6);
+        font-style: normal;
+        max-width: 480px;
+      }
+
+      .value-item.right .value-body { margin-left: auto; }
+
+      /* ── STAFF ── */
       .staff-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -367,8 +390,8 @@
 
       .staff-name {
         font-size: clamp(1rem, 3.5vw, 1.3rem);
-        font-style: italic;
-        font-weight: normal;
+        font-weight: bold;
+        font-style: normal;
         color: var(--light-purple);
         line-height: 1.2;
       }
@@ -379,47 +402,19 @@
         text-transform: uppercase;
         color: var(--contrast);
         margin-top: 4px;
+        font-style: normal;
       }
 
-      .values-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 24px;
-        margin-top: 8px;
+      /* ── RULE ── */
+      .rule {
+        width: 100%;
+        height: 1px;
+        background: rgba(58,54,96,0.4);
+        max-width: 900px;
+        margin: 0 auto;
       }
 
-      @media (min-width: 600px) { .values-grid { grid-template-columns: 1fr 1fr; } }
-
-      .value-item {
-        padding: 28px 24px;
-        border: 1px solid rgba(58,54,96,0.4);
-        border-radius: 2px;
-        transition: border-color 0.3s;
-      }
-
-      .value-item:hover { border-color: rgba(206,203,253,0.3); }
-
-      .value-number {
-        font-size: 0.62rem;
-        letter-spacing: 0.2em;
-        color: var(--contrast);
-        text-transform: uppercase;
-        margin-bottom: 12px;
-      }
-
-      .value-title {
-        font-size: 1.1rem;
-        font-style: italic;
-        color: var(--light-purple);
-        margin-bottom: 10px;
-      }
-
-      .value-body {
-        font-size: 0.85rem;
-        line-height: 1.8;
-        color: rgba(206,203,253,0.6);
-      }
-
+      /* ── FOOTER ── */
       footer {
         background: var(--extra-dark-purple);
         padding: 48px 28px;
@@ -449,6 +444,7 @@
         color: rgba(206,203,253,0.45);
         text-decoration: none;
         transition: color 0.2s;
+        font-style: normal;
       }
 
       .footer-links a:hover { color: var(--light-purple); }
@@ -457,6 +453,7 @@
         font-size: 0.68rem;
         color: rgba(206,203,253,0.2);
         letter-spacing: 0.05em;
+        font-style: normal;
       }
     </style>
   </head>
@@ -496,16 +493,13 @@
       <p class="section-label">Owner &amp; Director</p>
       <div class="bio-block">
         <div class="bio-image-wrap">
-          <img
-            src="https://static.wixstatic.com/media/f45bac_79a5c4cf24f946d085ffb66f39719939~mv2.jpg/v1/fill/w_298,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Me.jpg"
-            alt="Miss April"
-          />
+          <img src="april.png" alt="Miss April" />
         </div>
         <div class="bio-text">
           <h2 class="bio-name">Miss April</h2>
           <p class="bio-title">Owner &amp; Director</p>
           <div class="bio-body">
-            <p>Since attending her first dance class in 1973, April fell in love with the art of dance. She trained with multiple choreographers from New York City throughout her teenage years. <span class="bio-highlight">Her greatest achievements include taking Tap classes from Gregory Hines and Savion Glover.</span></p>
+            <p>Since attending her first dance class in 1973, April fell in love with the art of dance. She trained with multiple choreographers from New York City throughout her teenage years, with her greatest achievements including Tap classes from Gregory Hines and Savion Glover.</p>
             <p>At age 16 she was offered a teaching position at a local dance school, and never looked back. She earned a BA in Mathematics and an MS in Elementary Education from SCSU — all while continuing to dance and teach.</p>
             <p>April continues working full time as a Math teacher in East Haven, raising her family with her husband Danny, and teaching dance every moment she can.</p>
           </div>
@@ -520,8 +514,7 @@
       <div class="story-block">
         <p>Established in 2015, Center Stage Dance Academy has always been about dance — the empowerment of it, the beauty of the movements, and the freedom of self-expression.</p>
         <blockquote class="story-pull">We pride ourselves in being nonparticipants in dance competitions. The focus is on the show.</blockquote>
-        <p>Every spring, after months of hard work perfecting their craft, our students put on a wondrous recital. Uniquely themed for each new rendition, students of all ages showcase everything they have learned throughout the year.</p>
-        <p>Center Stage and its teachers are committed to extending their love for dance to every willing person who walks through our doors. We welcome youths of all backgrounds and experience levels — come find out what dance is all about.</p>
+        <p>Every spring our students put on a wondrous recital — uniquely themed, showcasing everything they have worked toward throughout the year. We welcome youths of all backgrounds and experience levels. Come find out what dance is all about.</p>
       </div>
     </section>
 
@@ -531,22 +524,18 @@
       <p class="section-label">What We Believe</p>
       <div class="values-grid">
         <div class="value-item">
-          <p class="value-number">01</p>
           <p class="value-title">Everyone Belongs</p>
           <p class="value-body">No experience required. We welcome students of all ages and backgrounds from the very first class.</p>
         </div>
-        <div class="value-item">
-          <p class="value-number">02</p>
+        <div class="value-item right">
           <p class="value-title">Joy Over Competition</p>
           <p class="value-body">We are proudly competition-free. Our energy goes into the craft, the community, and the annual recital.</p>
         </div>
         <div class="value-item">
-          <p class="value-number">03</p>
           <p class="value-title">Expert Instruction</p>
           <p class="value-body">Our teachers bring decades of professional training and a genuine passion for passing it on.</p>
         </div>
-        <div class="value-item">
-          <p class="value-number">04</p>
+        <div class="value-item right">
           <p class="value-title">The Show</p>
           <p class="value-body">Every spring our students take the stage. The recital is the moment everything comes together.</p>
         </div>
@@ -560,10 +549,7 @@
       <div class="staff-grid">
         <div class="staff-card">
           <div class="staff-image-wrap">
-            <img
-              src="https://static.wixstatic.com/media/f45bac_73a7e602053645cd801812345be36679~mv2.jpg/v1/fill/w_206,h_259,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sam.jpg"
-              alt="Miss Sam"
-            />
+            <img src="sam.png" alt="Miss Sam" />
           </div>
           <div>
             <p class="staff-name">Miss Sam</p>
@@ -572,10 +558,7 @@
         </div>
         <div class="staff-card">
           <div class="staff-image-wrap">
-            <img
-              src="https://static.wixstatic.com/media/f45bac_39587be8a687474fb3830924fe509705~mv2.jpeg/v1/fill/w_206,h_259,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/A.jpeg"
-              alt="Miss Alicia"
-            />
+            <img src="alicia.png" alt="Miss Alicia" />
           </div>
           <div>
             <p class="staff-name">Miss Alicia</p>
