@@ -13,14 +13,17 @@ function closeMenu(callback) {
   menuOverlay.classList.remove('open');
   document.body.style.overflow = '';
   if (callback) {
-    setTimeout(callback, 750);
+    callback();
   }
 }
 
 function navigateTo(url) {
-  closeMenu(() => {
-    window.location.href = url;
-  });
+  const hamburger = document.getElementById('hamburger');
+  const menuOverlay = document.getElementById('menuOverlay');
+  hamburger.classList.remove('open');
+  menuOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  window.location.href = url;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
