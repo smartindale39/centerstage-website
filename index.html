@@ -21,53 +21,344 @@
 
       body {
         background: var(--black);
-        color: var(--dark-purple);
+        color: var(--light-purple);
+        font-family: 'Georgia', serif;
+        overflow-x: hidden;
       }
 
+      /* ── NAVBAR ── */
       nav {
-        background: var(--extra-dark-purple);
-        padding: 0 24px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 0 28px;
+        background: transparent;
+        transition: background 0.4s;
+      }
+
+      nav.scrolled {
+        background: rgba(21, 17, 32, 0.95);
+        backdrop-filter: blur(10px);
       }
 
       .nav-logo {
         color: var(--light-purple);
-        font-size: 1.1rem;
-        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
         text-decoration: none;
+        z-index: 200;
+        transition: color 0.3s;
       }
 
-      .nav-links {
+      .nav-logo.menu-open {
+        color: var(--black);
+      }
+
+      /* ── HAMBURGER ── */
+      .hamburger {
         display: flex;
-        gap: 28px;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 6px;
+        z-index: 200;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 28px;
+        height: 1.5px;
+        background: var(--light-purple);
+        transition: all 0.4s cubic-bezier(.77,0,.175,1);
+        transform-origin: center;
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+        background: var(--black);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+        background: var(--black);
+      }
+
+      /* ── FULL SCREEN MENU ── */
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 150;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 40px 40px;
+        pointer-events: none;
+        visibility: hidden;
+      }
+
+      .menu-overlay.open {
+        pointer-events: all;
+        visibility: visible;
+      }
+
+      /* Background panels that slide in */
+      .menu-overlay::before,
+      .menu-overlay::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        transition: transform 0.6s cubic-bezier(.77,0,.175,1);
+      }
+
+      .menu-overlay::before {
+        background: var(--dark-purple);
+        transform: translateX(100%);
+        z-index: -2;
+      }
+
+      .menu-overlay::after {
+        background: var(--light-purple);
+        transform: translateX(100%);
+        transition-delay: 0.07s;
+        z-index: -1;
+      }
+
+      .menu-overlay.open::before,
+      .menu-overlay.open::after {
+        transform: translateX(0);
+      }
+
+      /* ── NAV LINKS ── */
+      .menu-links {
         list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
 
-      .nav-links a {
-        color: var(--dark-purple);
+      .menu-links li {
+        overflow: hidden;
+      }
+
+      .menu-links a {
+        display: block;
+        font-size: clamp(2.4rem, 10vw, 5rem);
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        color: var(--black);
         text-decoration: none;
-        font-size: 0.9rem;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        transform: translateY(100%);
+        transition: transform 0.5s cubic-bezier(.77,0,.175,1), color 0.2s;
       }
 
-      .nav-links a:hover {
+      .menu-links a:hover {
+        color: var(--extra-dark-purple);
+      }
+
+      .menu-overlay.open .menu-links a {
+        transform: translateY(0);
+      }
+
+      /* Stagger each link */
+      .menu-links li:nth-child(1) a { transition-delay: 0.2s; }
+      .menu-links li:nth-child(2) a { transition-delay: 0.27s; }
+      .menu-links li:nth-child(3) a { transition-delay: 0.34s; }
+      .menu-links li:nth-child(4) a { transition-delay: 0.41s; }
+      .menu-links li:nth-child(5) a { transition-delay: 0.48s; }
+
+      .menu-footer {
+        margin-top: auto;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--extra-dark-purple);
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s 0.55s;
+      }
+
+      .menu-overlay.open .menu-footer {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 80px 28px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Abstract CSS background */
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 60% at 20% 50%, rgba(58,54,96,0.6) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 80% at 80% 30%, rgba(21,17,32,0.9) 0%, transparent 60%),
+          radial-gradient(ellipse 100% 100% at 50% 100%, rgba(58,54,96,0.3) 0%, transparent 50%),
+          var(--black);
+        z-index: 0;
+      }
+
+      /* Soft animated glow */
+      .hero::after {
+        content: '';
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(206,203,253,0.06) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 6s ease-in-out infinite alternate;
+        z-index: 0;
+      }
+
+      @keyframes pulse {
+        from { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        to   { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 1s 0.3s ease forwards;
+      }
+
+      .hero-title {
+        font-size: clamp(2.8rem, 12vw, 7rem);
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        font-weight: normal;
+        line-height: 1.05;
         color: var(--light-purple);
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeUp 1s 0.5s ease forwards;
+      }
+
+      .hero-sub {
+        font-size: clamp(0.8rem, 3vw, 0.95rem);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dark-purple);
+        opacity: 0;
+        animation: fadeUp 1s 0.7s ease forwards;
+      }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* placeholder content so page scrolls */
+      .placeholder {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark-purple);
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
       }
     </style>
   </head>
   <body>
 
-    <nav>
-      <a href="index.html" class="nav-logo">Center Stage Academy</a>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Classes</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <a href="index.html" class="nav-logo" id="navLogo">Center Stage Academy</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <!-- FULL SCREEN MENU -->
+    <div class="menu-overlay" id="menuOverlay">
+      <ul class="menu-links">
+        <li><a href="#" onclick="closeMenu()">Home</a></li>
+        <li><a href="#" onclick="closeMenu()">About</a></li>
+        <li><a href="#" onclick="closeMenu()">Classes</a></li>
+        <li><a href="#" onclick="closeMenu()">Handbook</a></li>
+        <li><a href="#" onclick="closeMenu()">Contact</a></li>
+      </ul>
+      <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">East Haven, CT · Est. 2015</p>
+        <h1 class="hero-title">Center Stage<br/>Academy</h1>
+        <p class="hero-sub">Ballet · Tap · Jazz · Hip Hop · Lyrical · Acro</p>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER -->
+    <div class="placeholder">More content coming soon</div>
+
+    <script>
+      const hamburger = document.getElementById('hamburger');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const navLogo = document.getElementById('navLogo');
+      const navbar = document.getElementById('navbar');
+
+      function openMenu() {
+        hamburger.classList.add('open');
+        menuOverlay.classList.add('open');
+        navLogo.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('open');
+        menuOverlay.classList.remove('open');
+        navLogo.classList.remove('menu-open');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.contains('open') ? closeMenu() : openMenu();
+      });
+
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+      });
+    </script>
 
   </body>
 </html>
