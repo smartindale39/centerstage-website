@@ -23,7 +23,6 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ── NAVBAR ── */
       nav {
         position: fixed;
         top: 0; left: 0; right: 0;
@@ -60,7 +59,6 @@
         display: block;
       }
 
-      /* ── HAMBURGER ── */
       .hamburger {
         display: flex;
         flex-direction: column;
@@ -91,7 +89,6 @@
         background: var(--black);
       }
 
-      /* ── FULL SCREEN MENU ── */
       .menu-overlay {
         position: fixed;
         inset: 0;
@@ -169,7 +166,6 @@
         transform: translateY(0);
       }
 
-      /* ── PAGE HEADER ── */
       .page-header {
         padding: 140px 28px 80px;
         position: relative;
@@ -219,7 +215,6 @@
         to   { opacity: 1; transform: translateY(0); }
       }
 
-      /* ── SECTIONS ── */
       .section {
         padding: 80px 28px;
         max-width: 900px;
@@ -236,7 +231,6 @@
         border-bottom: 1px solid rgba(58,54,96,0.5);
       }
 
-      /* ── APRIL BIO ── */
       .bio-block {
         display: flex;
         flex-direction: column;
@@ -244,11 +238,7 @@
       }
 
       @media (min-width: 700px) {
-        .bio-block {
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 56px;
-        }
+        .bio-block { flex-direction: row; align-items: flex-start; gap: 56px; }
       }
 
       .bio-image-wrap {
@@ -260,10 +250,7 @@
       }
 
       @media (min-width: 700px) {
-        .bio-image-wrap {
-          width: 220px;
-          margin: 0;
-        }
+        .bio-image-wrap { width: 220px; margin: 0; }
       }
 
       .bio-image-wrap::before {
@@ -308,18 +295,15 @@
         font-size: 0.95rem;
         line-height: 1.9;
         color: rgba(206,203,253,0.7);
-        font-family: 'Georgia', serif;
       }
 
       .bio-body p + p { margin-top: 16px; }
 
       .bio-highlight {
-        display: inline;
         color: var(--light-purple);
         font-style: italic;
       }
 
-      /* ── DIVIDER ── */
       .rule {
         width: 100%;
         height: 1px;
@@ -328,12 +312,7 @@
         margin: 0 auto;
       }
 
-      /* ── OUR STORY ── */
-      .story-block {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
+      .story-block { display: flex; flex-direction: column; gap: 24px; }
 
       .story-block p {
         font-size: 0.95rem;
@@ -351,7 +330,6 @@
         margin: 16px 0;
       }
 
-      /* ── STAFF GRID ── */
       .staff-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -359,9 +337,7 @@
         margin-top: 8px;
       }
 
-      @media (min-width: 600px) {
-        .staff-grid { gap: 36px; }
-      }
+      @media (min-width: 600px) { .staff-grid { gap: 36px; } }
 
       .staff-card { display: flex; flex-direction: column; gap: 16px; }
 
@@ -387,9 +363,7 @@
         transition: transform 0.5s ease;
       }
 
-      .staff-card:hover .staff-image-wrap img {
-        transform: scale(1.03);
-      }
+      .staff-card:hover .staff-image-wrap img { transform: scale(1.03); }
 
       .staff-name {
         font-size: clamp(1rem, 3.5vw, 1.3rem);
@@ -407,7 +381,6 @@
         margin-top: 4px;
       }
 
-      /* ── VALUES ── */
       .values-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -415,9 +388,7 @@
         margin-top: 8px;
       }
 
-      @media (min-width: 600px) {
-        .values-grid { grid-template-columns: 1fr 1fr; }
-      }
+      @media (min-width: 600px) { .values-grid { grid-template-columns: 1fr 1fr; } }
 
       .value-item {
         padding: 28px 24px;
@@ -449,7 +420,6 @@
         color: rgba(206,203,253,0.6);
       }
 
-      /* ── FOOTER ── */
       footer {
         background: var(--extra-dark-purple);
         padding: 48px 28px;
@@ -492,7 +462,6 @@
   </head>
   <body>
 
-    <!-- NAVBAR -->
     <nav id="navbar">
       <a href="index.html" class="nav-logo">
         <img src="logo.png" alt="Center Stage Dance Academy" />
@@ -502,22 +471,20 @@
       </button>
     </nav>
 
-    <!-- FULL SCREEN MENU -->
     <div class="menu-overlay" id="menuOverlay">
       <div class="menu-panel menu-panel-1"></div>
       <div class="menu-panel menu-panel-2"></div>
       <div class="menu-panel menu-panel-3"></div>
       <ul class="menu-links">
-        <li><a href="index.html"    onclick="navigateTo('index.html')">Home</a></li>
-        <li><a href="about.html"    onclick="navigateTo('about.html')">About</a></li>
-        <li><a href="classes.html"  onclick="closeMenu()">Classes</a></li>
-        <li><a href="handbook.html" onclick="closeMenu()">Handbook</a></li>
-        <li><a href="contact.html"  onclick="closeMenu()">Contact</a></li>
+        <li><a href="#" onclick="navigateTo('index.html'); return false;">Home</a></li>
+        <li><a href="#" onclick="navigateTo('about.html'); return false;">About</a></li>
+        <li><a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a></li>
+        <li><a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a></li>
+        <li><a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a></li>
       </ul>
       <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
     </div>
 
-    <!-- PAGE HEADER -->
     <header class="page-header">
       <div class="page-header-content">
         <p class="page-eyebrow">Our Story · Our People</p>
@@ -525,7 +492,6 @@
       </div>
     </header>
 
-    <!-- MISS APRIL -->
     <section class="section">
       <p class="section-label">Owner &amp; Director</p>
       <div class="bio-block">
@@ -539,21 +505,9 @@
           <h2 class="bio-name">Miss April</h2>
           <p class="bio-title">Owner &amp; Director</p>
           <div class="bio-body">
-            <p>
-              Since attending her first dance class in 1973, April fell in love with the art of dance.
-              She trained with multiple choreographers from New York City throughout her teenage years.
-              <span class="bio-highlight">Her greatest achievements include taking Tap classes from
-              Gregory Hines and Savion Glover.</span>
-            </p>
-            <p>
-              At age 16 she was offered a teaching position at a local dance school, and never looked back.
-              She earned a BA in Mathematics and an MS in Elementary Education from SCSU — all while
-              continuing to dance and teach.
-            </p>
-            <p>
-              April continues working full time as a Math teacher in East Haven, raising her family with
-              her husband Danny, and teaching dance every moment she can.
-            </p>
+            <p>Since attending her first dance class in 1973, April fell in love with the art of dance. She trained with multiple choreographers from New York City throughout her teenage years. <span class="bio-highlight">Her greatest achievements include taking Tap classes from Gregory Hines and Savion Glover.</span></p>
+            <p>At age 16 she was offered a teaching position at a local dance school, and never looked back. She earned a BA in Mathematics and an MS in Elementary Education from SCSU — all while continuing to dance and teach.</p>
+            <p>April continues working full time as a Math teacher in East Haven, raising her family with her husband Danny, and teaching dance every moment she can.</p>
           </div>
         </div>
       </div>
@@ -561,33 +515,18 @@
 
     <div class="rule"></div>
 
-    <!-- OUR STORY -->
     <section class="section">
       <p class="section-label">Our Story</p>
       <div class="story-block">
-        <p>
-          Established in 2015, Center Stage Dance Academy has always been about dance —
-          the empowerment of it, the beauty of the movements, and the freedom of self-expression.
-        </p>
-        <blockquote class="story-pull">
-          We pride ourselves in being nonparticipants in dance competitions. The focus is on the show.
-        </blockquote>
-        <p>
-          Every spring, after months of hard work perfecting their craft, our students put on a
-          wondrous recital. Uniquely themed for each new rendition, students of all ages showcase
-          everything they have learned throughout the year.
-        </p>
-        <p>
-          Center Stage and its teachers are committed to extending their love for dance to every
-          willing person who walks through our doors. We welcome youths of all backgrounds and
-          experience levels — come find out what dance is all about.
-        </p>
+        <p>Established in 2015, Center Stage Dance Academy has always been about dance — the empowerment of it, the beauty of the movements, and the freedom of self-expression.</p>
+        <blockquote class="story-pull">We pride ourselves in being nonparticipants in dance competitions. The focus is on the show.</blockquote>
+        <p>Every spring, after months of hard work perfecting their craft, our students put on a wondrous recital. Uniquely themed for each new rendition, students of all ages showcase everything they have learned throughout the year.</p>
+        <p>Center Stage and its teachers are committed to extending their love for dance to every willing person who walks through our doors. We welcome youths of all backgrounds and experience levels — come find out what dance is all about.</p>
       </div>
     </section>
 
     <div class="rule"></div>
 
-    <!-- WHAT WE BELIEVE -->
     <section class="section">
       <p class="section-label">What We Believe</p>
       <div class="values-grid">
@@ -616,7 +555,6 @@
 
     <div class="rule"></div>
 
-    <!-- STAFF -->
     <section class="section">
       <p class="section-label">Our Staff</p>
       <div class="staff-grid">
@@ -647,73 +585,21 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-logo">
         <img src="logo.png" alt="Center Stage Dance Academy" />
       </div>
       <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="classes.html">Classes</a>
-        <a href="handbook.html">Handbook</a>
-        <a href="contact.html">Contact</a>
+        <a href="#" onclick="navigateTo('index.html'); return false;">Home</a>
+        <a href="#" onclick="navigateTo('about.html'); return false;">About</a>
+        <a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a>
+        <a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a>
         <a href="https://centerstagedanceacademyllc.studioware2.com/" target="_blank">Pay Bill</a>
       </div>
       <p class="footer-copy">© 2025 Center Stage Dance Academy LLC · East Haven, CT</p>
     </footer>
 
-    <script>
-      const hamburger = document.getElementById('hamburger');
-      const menuOverlay = document.getElementById('menuOverlay');
-      const navbar = document.getElementById('navbar');
-
-      function openMenu() {
-        hamburger.classList.add('open');
-        menuOverlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMenu(callback) {
-        hamburger.classList.remove('open');
-        menuOverlay.classList.remove('open');
-        document.body.style.overflow = '';
-        if (callback) {
-          setTimeout(callback, 650);
-        }
-      }
-
-      function navigateTo(url) {
-        closeMenu(() => {
-          window.location.href = url;
-        });
-      }
-
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.contains('open') ? closeMenu() : openMenu();
-      });
-
-      let lastScroll = 0;
-      let ticking = false;
-
-      window.addEventListener('scroll', () => {
-        if (ticking) return;
-        window.requestAnimationFrame(() => {
-          const current = window.scrollY;
-          navbar.classList.toggle('scrolled', current > 40);
-          if (!menuOverlay.classList.contains('open')) {
-            if (current > lastScroll && current > 80) {
-              navbar.classList.add('hidden');
-            } else {
-              navbar.classList.remove('hidden');
-            }
-          }
-          lastScroll = current <= 0 ? 0 : current;
-          ticking = false;
-        });
-        ticking = true;
-      });
-    </script>
-
+    <script src="nav.js"></script>
   </body>
 </html>
