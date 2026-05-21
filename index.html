@@ -40,7 +40,7 @@
         justify-content: space-between;
         padding: 0 28px;
         background: transparent;
-        transition: background 0.4s;
+        transition: background 0.4s, transform 0.4s cubic-bezier(.77,0,.175,1);
       }
 
       nav.scrolled {
@@ -49,17 +49,22 @@
         -webkit-backdrop-filter: blur(10px);
       }
 
+      nav.hidden {
+        transform: translateY(-100%);
+      }
+
       .nav-logo {
         z-index: 200;
         display: flex;
         align-items: center;
       }
 
-      .nav-logo img {
+css    .nav-logo img {
         height: 44px;
         width: auto;
         object-fit: contain;
         transition: opacity 0.3s;
+        margin-left: -6px;
       }
 
       /* ── HAMBURGER ── */
@@ -217,60 +222,60 @@
         mix-blend-mode: screen;
       }
 
-      .blob-1 {
-        width: 70vw;
-        height: 65vw;
-        max-width: 520px;
-        max-height: 480px;
+    .blob-1 {
+        width: 110vw;
+        height: 100vw;
+        max-width: 820px;
+        max-height: 750px;
         background: var(--dark-purple);
-        border-radius: 62% 38% 71% 29% / 44% 58% 42% 56%;
-        top: -10%;
-        left: -15%;
+        border-radius: 42% 58% 67% 33% / 45% 32% 68% 55%;
+        top: -25%;
+        left: -30%;
       }
 
       .blob-2 {
-        width: 60vw;
-        height: 70vw;
-        max-width: 480px;
-        max-height: 540px;
+        width: 100vw;
+        height: 110vw;
+        max-width: 780px;
+        max-height: 840px;
         background: var(--extra-dark-purple);
-        border-radius: 38% 62% 29% 71% / 58% 34% 66% 42%;
-        bottom: -15%;
-        right: -10%;
+        border-radius: 61% 39% 28% 72% / 55% 68% 32% 45%;
+        bottom: -30%;
+        right: -25%;
       }
 
       .blob-3 {
-        width: 55vw;
-        height: 50vw;
-        max-width: 420px;
-        max-height: 380px;
+        width: 90vw;
+        height: 85vw;
+        max-width: 680px;
+        max-height: 640px;
         background: var(--dark-purple);
-        border-radius: 71% 29% 45% 55% / 36% 64% 36% 64%;
-        bottom: 10%;
-        left: -5%;
+        border-radius: 73% 27% 52% 48% / 32% 61% 39% 68%;
+        bottom: 5%;
+        left: -20%;
       }
 
       .blob-4 {
-        width: 40vw;
-        height: 45vw;
-        max-width: 300px;
-        max-height: 340px;
+        width: 75vw;
+        height: 80vw;
+        max-width: 580px;
+        max-height: 620px;
         background: var(--extra-dark-purple);
-        border-radius: 29% 71% 58% 42% / 64% 28% 72% 36%;
-        top: 20%;
-        right: -8%;
+        border-radius: 28% 72% 61% 39% / 67% 28% 72% 33%;
+        top: 10%;
+        right: -20%;
       }
 
       .blob-5 {
-        width: 30vw;
-        height: 35vw;
-        max-width: 220px;
-        max-height: 260px;
+        width: 60vw;
+        height: 65vw;
+        max-width: 460px;
+        max-height: 500px;
         background: var(--light-purple);
-        border-radius: 55% 45% 38% 62% / 48% 72% 28% 52%;
-        top: 35%;
-        left: 30%;
-        opacity: 0.12;
+        border-radius: 52% 48% 35% 65% / 48% 74% 26% 52%;
+        top: 30%;
+        left: 20%;
+        opacity: 0.10;
       }
 
       @keyframes blobMove1 {
@@ -315,10 +320,11 @@
       }
 
       .hero-logo {
-        width: clamp(200px, 60vw, 380px);
+        width: clamp(280px, 80vw, 560px);
         height: auto;
         opacity: 0;
         animation: fadeUp 1s 0.4s ease forwards;
+        filter: drop-shadow(0 0 40px rgba(206, 203, 253, 0.2));
       }
 
       .hero-sub {
@@ -439,8 +445,31 @@
         hamburger.classList.contains('open') ? closeMenu() : openMenu();
       });
 
+      let lastScroll = 0;
+      let ticking = false;
+
       window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 40);
+        if (ticking) return;
+        window.requestAnimationFrame(() => {
+          const current = window.scrollY;
+
+          // Scrolled state
+          navbar.classList.toggle('scrolled', current > 40);
+
+          // Hide on scroll down, show on scroll up
+          // Don't hide if menu is open
+          if (!menuOverlay.classList.contains('open')) {
+            if (current > lastScroll && current > 80) {
+              navbar.classList.add('hidden');
+            } else {
+              navbar.classList.remove('hidden');
+            }
+          }
+
+          lastScroll = current <= 0 ? 0 : current;
+          ticking = false;
+        });
+        ticking = true;
       });
     </script>
 
