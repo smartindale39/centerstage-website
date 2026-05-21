@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CenterStage</title>
-    </head>
-    <body>
-        <h1>Center Stage Dance Academy</h1>
-    </body>
-</html> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Center Stage Academy</title>
+    <style>
+      :root {
+        --black: #000000;
+        --extra-dark-purple: #151120;
+        --dark-purple: #3A3660;
+        --light-purple: #CECBFD;
+        --contrast: #E0DFC8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--dark-purple);
+      }
+
+      nav {
+        background: var(--extra-dark-purple);
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        color: var(--light-purple);
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--dark-purple);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--light-purple);
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav>
+      <a href="index.html" class="nav-logo">Center Stage Academy</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Classes</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+  </body>
+</html>
