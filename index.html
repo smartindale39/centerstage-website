@@ -198,7 +198,7 @@
       }
 
       /* ── HERO ── */
-      .hero {
+    .hero {
         height: 100svh;
         display: flex;
         flex-direction: column;
@@ -211,71 +211,66 @@
         background: var(--black);
       }
 
-      /* Lava lamp blobs */
+/* Ink/fluid background shapes */
       .blob {
         position: absolute;
-        border-radius: 50%;
-        filter: blur(0px);
         mix-blend-mode: screen;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
       }
 
       .blob-1 {
-        width: 45vw;
-        height: 45vw;
-        max-width: 340px;
-        max-height: 340px;
+        width: 70vw;
+        height: 65vw;
+        max-width: 520px;
+        max-height: 480px;
         background: var(--dark-purple);
-        top: 5%;
-        left: -10%;
-        animation: blobMove1 9s infinite alternate ease-in-out;
+        border-radius: 62% 38% 71% 29% / 44% 58% 42% 56%;
+        top: -10%;
+        left: -15%;
       }
 
       .blob-2 {
-        width: 50vw;
-        height: 50vw;
-        max-width: 380px;
-        max-height: 380px;
+        width: 60vw;
+        height: 70vw;
+        max-width: 480px;
+        max-height: 540px;
         background: var(--extra-dark-purple);
-        bottom: 0%;
-        right: -5%;
-        animation: blobMove2 11s infinite alternate ease-in-out;
+        border-radius: 38% 62% 29% 71% / 58% 34% 66% 42%;
+        bottom: -15%;
+        right: -10%;
       }
 
       .blob-3 {
-        width: 35vw;
-        height: 35vw;
-        max-width: 260px;
-        max-height: 260px;
+        width: 55vw;
+        height: 50vw;
+        max-width: 420px;
+        max-height: 380px;
         background: var(--dark-purple);
-        bottom: 20%;
-        left: 10%;
-        animation: blobMove3 7s infinite alternate ease-in-out;
+        border-radius: 71% 29% 45% 55% / 36% 64% 36% 64%;
+        bottom: 10%;
+        left: -5%;
       }
 
       .blob-4 {
-        width: 28vw;
-        height: 28vw;
-        max-width: 200px;
-        max-height: 200px;
-        background: var(--light-purple);
-        top: 15%;
-        right: 5%;
-        opacity: 0.18;
-        animation: blobMove4 13s infinite alternate ease-in-out;
+        width: 40vw;
+        height: 45vw;
+        max-width: 300px;
+        max-height: 340px;
+        background: var(--extra-dark-purple);
+        border-radius: 29% 71% 58% 42% / 64% 28% 72% 36%;
+        top: 20%;
+        right: -8%;
       }
 
       .blob-5 {
-        width: 20vw;
-        height: 20vw;
-        max-width: 150px;
-        max-height: 150px;
-        background: var(--extra-dark-purple);
-        top: 50%;
-        left: 40%;
-        animation: blobMove5 8s infinite alternate ease-in-out;
+        width: 30vw;
+        height: 35vw;
+        max-width: 220px;
+        max-height: 260px;
+        background: var(--light-purple);
+        border-radius: 55% 45% 38% 62% / 48% 72% 28% 52%;
+        top: 35%;
+        left: 30%;
+        opacity: 0.12;
       }
 
       @keyframes blobMove1 {
