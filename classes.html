@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes | Center Stage Dance Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+
+      .classes-wrapper {
+        padding: 60px 28px 80px;
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+      }
+
+      /* ── INTRO ── */
+      .classes-intro {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .classes-intro-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+      }
+
+      .classes-intro p {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: rgba(206,203,253,0.7);
+        max-width: 680px;
+      }
+
+      /* ── SECTION LABEL ── */
+      .classes-section-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+        margin-bottom: 32px;
+      }
+
+      /* ── CLASS GRID ── */
+      .class-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      /* ── CLASS CARD ── */
+      .class-card {
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .class-card:hover {
+        border-color: rgba(206,203,253,0.3);
+      }
+
+      .class-card.open {
+        border-color: rgba(206,203,253,0.25);
+      }
+
+      .class-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 22px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        gap: 16px;
+        text-align: left;
+      }
+
+      .class-trigger-left {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+      }
+
+      .class-name {
+        font-size: clamp(1rem, 3.5vw, 1.15rem);
+        font-weight: bold;
+        color: var(--light-purple);
+        transition: color 0.2s;
+      }
+
+      .class-trigger:hover .class-name {
+        color: var(--contrast);
+      }
+
+      .class-card.open .class-name {
+        color: var(--contrast);
+      }
+
+      .class-short {
+        font-size: 0.82rem;
+        color: rgba(206,203,253,0.45);
+        line-height: 1.4;
+      }
+
+      .class-icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        position: relative;
+      }
+
+      .class-icon::before,
+      .class-icon::after {
+        content: '';
+        position: absolute;
+        background: var(--light-purple);
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(.77,0,.175,1);
+      }
+
+      .class-icon::before {
+        width: 100%; height: 1.5px;
+        top: 50%; left: 0;
+        transform: translateY(-50%);
+      }
+
+      .class-icon::after {
+        width: 1.5px; height: 100%;
+        left: 50%; top: 0;
+        transform: translateX(-50%);
+      }
+
+      .class-card.open .class-icon::after {
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 0;
+      }
+
+      /* ── CLASS BODY ── */
+      .class-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(.77,0,.175,1);
+      }
+
+      .class-card.open .class-body {
+        grid-template-rows: 1fr;
+      }
+
+      .class-body-inner {
+        overflow: hidden;
+      }
+
+      .class-content {
+        padding: 0 20px 28px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-top: 1px solid rgba(58,54,96,0.3);
+      }
+
+      .class-description {
+        font-size: 0.92rem;
+        line-height: 1.85;
+        color: rgba(206,203,253,0.7);
+        padding-top: 20px;
+      }
+
+      /* ── DETAIL TABLE ── */
+      .class-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid rgba(58,54,96,0.3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .class-detail-row {
+        display: flex;
+        border-bottom: 1px solid rgba(58,54,96,0.25);
+      }
+
+      .class-detail-row:last-child {
+        border-bottom: none;
+      }
+
+      .class-detail-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding: 12px 16px;
+        width: 38%;
+        flex-shrink: 0;
+        border-right: 1px solid rgba(58,54,96,0.25);
+        display: flex;
+        align-items: center;
+        background: rgba(58,54,96,0.08);
+      }
+
+      .class-detail-value {
+        font-size: 0.88rem;
+        color: var(--light-purple);
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        line-height: 1.5;
+      }
+
+      /* ── SPECIALTY ── */
+      .specialty-section {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .specialty-intro {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        color: rgba(206,203,253,0.7);
+        max-width: 680px;
+      }
+
+      .specialty-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      @media (min-width: 600px) {
+        .specialty-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      .specialty-card {
+        padding: 28px 20px;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: border-color 0.3s;
+      }
+
+      .specialty-card:hover {
+        border-color: rgba(206,203,253,0.3);
+      }
+
+      .specialty-name {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--light-purple);
+      }
+
+      .specialty-req {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--contrast);
+        text-transform: uppercase;
+      }
+
+      .specialty-body {
+        font-size: 0.85rem;
+        line-height: 1.75;
+        color: rgba(206,203,253,0.6);
+      }
+
+      /* ── CTA ── */
+      .register-cta {
+        padding: 48px 32px;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background: rgba(58,54,96,0.08);
+      }
+
+      .register-cta-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+      }
+
+      .register-cta h2 {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        font-weight: bold;
+        color: var(--light-purple);
+        line-height: 1.2;
+      }
+
+      .register-cta p {
+        font-size: 0.9rem;
+        color: rgba(206,203,253,0.6);
+        line-height: 1.7;
+        max-width: 480px;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 14px 36px;
+        border: 1px solid var(--light-purple);
+        color: var(--light-purple);
+        text-decoration: none;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: background 0.3s, color 0.3s;
+        border-radius: 2px;
+      }
+
+      .cta-btn:hover {
+        background: var(--light-purple);
+        color: var(--black);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel menu-panel-1"></div>
+      <div class="menu-panel menu-panel-2"></div>
+      <div class="menu-panel menu-panel-3"></div>
+      <ul class="menu-links">
+        <li><a href="#" onclick="navigateTo('index.html'); return false;">Home</a></li>
+        <li><a href="#" onclick="navigateTo('about.html'); return false;">About</a></li>
+        <li><a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a></li>
+        <li><a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a></li>
+        <li><a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a></li>
+      </ul>
+      <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
+    </div>
+
+    <header class="page-header">
+      <div class="page-header-content">
+        <p class="page-eyebrow">2025 / 2026 Season</p>
+        <h1 class="page-title">Classes</h1>
+      </div>
+    </header>
+
+    <div class="classes-wrapper">
+
+      <!-- INTRO -->
+      <div class="classes-intro">
+        <p class="classes-intro-label">How It Works</p>
+        <p>Classes at Center Stage Dance Academy are created based on age and ability. Every dancer is placed in the environment where they will thrive most. Class sizes, times, and dates vary based on enrollment each year. Reach out or visit the Parent Portal for current scheduling information.</p>
+      </div>
+
+      <!-- CLASS LIST -->
+      <div>
+        <p class="classes-section-label">Our Offerings</p>
+        <div class="class-grid">
+
+          <!-- COMBO -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Ballet & Tap Combo</span>
+                <span class="class-short">An introduction to two classic styles in one class</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">The perfect first dance experience. This combo class introduces our youngest dancers to the fundamentals of both Ballet and Tap in a single fun, welcoming session. Students begin to develop coordination, rhythm, and a love for movement in a nurturing environment.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">2.5 to 5 years</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Duration</span>
+                      <span class="class-detail-value">45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Pink/White Ballet + Tan Tap</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BALLET -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Ballet</span>
+                <span class="class-short">Classical technique built on posture, form, and grace</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A classical ballet class that teaches the formalized technique of dance, including specific rules regarding the positions of the arms, feet, and body. Choreography is built on combinations of fundamental movements that form the foundation for all dance styles. Students develop posture, discipline, and grace.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Pink or White Ballet Shoes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAP -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Tap</span>
+                <span class="class-short">Rhythm and percussion through movement</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A rhythmic dance style where the sounds of tap shoes striking the floor become the music. Students learn to use their feet as percussion instruments, developing a strong sense of timing, musicality, and coordination. A timeless and uniquely satisfying style of dance.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">7 years and up — 30 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Tan Mary Janes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- JAZZ -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Jazz</span>
+                <span class="class-short">High energy technique performed to popular music</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A technical and high-energy dance style performed to popular music. Students build strength and flexibility while working on turns, leaps, and dance technique. Jazz is an ever-evolving style that challenges dancers to be expressive, sharp, and precise.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Tan Jazz Boots</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HIP HOP -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Hip Hop</span>
+                <span class="class-short">Street style dance full of energy and personality</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A high-energy street style of dance performed in sneakers. Less formal than classical styles, Hip Hop focuses on rhythm, personality, and self-expression. Students learn combinations inspired by music videos and popular culture in an upbeat, welcoming environment.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">9 years and up — 45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Sneakers</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACRO JAZZ -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Acro Jazz</span>
+                <span class="class-short">Tumbling and acrobatics woven into jazz dance</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">Tumbling takes center stage in this jazz-based class. Students work on acrobatic skills including somersaults, backbends, cartwheels, handstands, and more, all integrated into dynamic jazz choreography. Placement is by skill level. We recommend taking an additional dance class alongside this one.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">5 to 6 years — 30 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">7 years and up — 45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Placement</span>
+                      <span class="class-detail-value">By skill level</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Barefoot</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LYRICAL BALLET -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Lyrical Ballet</span>
+                <span class="class-short">Fluid and expressive movement rooted in ballet</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A fusion of ballet, jazz, and contemporary technique. Lyrical Ballet is smoother and more expressive than traditional ballet but not as fast-paced as jazz. Students use movement to interpret music and emotion, developing fluidity, extension, and artistic expression alongside strong technical foundations.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Pink or White Ballet Shoes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MUSICAL THEATER -->
+          <div class="class-card">
+            <button class="class-trigger" onclick="toggleClass(this)">
+              <div class="class-trigger-left">
+                <span class="class-name">Musical Theater Dance</span>
+                <span class="class-short">Dance and storytelling brought to life through Broadway</span>
+              </div>
+              <div class="class-icon"></div>
+            </button>
+            <div class="class-body">
+              <div class="class-body-inner">
+                <div class="class-content">
+                  <p class="class-description">A theatrical dance style that fuses ballet, jazz, and modern technique with acting and storytelling. Students perform to songs from Broadway and musicals, bringing characters and emotions to life through movement. An ideal class for students who love performance and want to combine dance with dramatic expression.</p>
+                  <div class="class-details">
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Ages</span>
+                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    </div>
+                    <div class="class-detail-row">
+                      <span class="class-detail-label">Shoes</span>
+                      <span class="class-detail-value">Tan Character Shoes (1.5" heel)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SOLO DUO TRIO -->
+      <div class="specialty-section">
+        <p class="classes-section-label">Solo, Duo & Trio</p>
+        <p class="specialty-intro">For our most dedicated and experienced dancers, we offer individual and small group performance opportunities. Placement is based on total years of dance training, regardless of where those years were spent.</p>
+        <div class="specialty-grid">
+          <div class="specialty-card">
+            <p class="specialty-name">Solo</p>
+            <p class="specialty-req">15+ total years of dance</p>
+            <p class="specialty-body">An individual performance tailored to the dancer's strengths and style. Our most advanced offering for dancers with a deep foundation of training.</p>
+          </div>
+          <div class="specialty-card">
+            <p class="specialty-name">Duo</p>
+            <p class="specialty-req">10+ total years of dance</p>
+            <p class="specialty-body">A partnered performance combining two dancers in a shared routine. Requires strong individual technique and the ability to move in sync with a partner.</p>
+          </div>
+          <div class="specialty-card">
+            <p class="specialty-name">Trio</p>
+            <p class="specialty-req">5+ total years of dance</p>
+            <p class="specialty-body">A small group performance for three dancers. A great step into collaborative performance for students with a solid foundation in dance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="register-cta">
+        <p class="register-cta-label">2025 / 2026 Season</p>
+        <h2>Ready to Join a Class?</h2>
+        <p>Register through the Studio Pro Parent Portal or reach out to us directly with any questions about placement.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+          <a href="https://app.gostudiopro.com/online/index.php?account_id=21229" target="_blank" class="cta-btn">Register Now</a>
+          <a href="#" onclick="navigateTo('contact.html'); return false;" class="cta-btn">Contact Us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="navigateTo('index.html'); return false;">Home</a>
+        <a href="#" onclick="navigateTo('about.html'); return false;">About</a>
+        <a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a>
+        <a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a>
+        <a href="https://centerstagedanceacademyllc.studioware2.com/" target="_blank">Pay Bill</a>
+      </div>
+      <p class="footer-copy">© 2025 Center Stage Dance Academy LLC · East Haven, CT</p>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      function toggleClass(trigger) {
+        const card = trigger.closest('.class-card');
+        const isOpen = card.classList.contains('open');
+        document.querySelectorAll('.class-card').forEach(c => c.classList.remove('open'));
+        if (!isOpen) card.classList.add('open');
+      }
+    </script>
+
+  </body>
+</html>
