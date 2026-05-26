@@ -177,46 +177,50 @@
         padding-top: 20px;
       }
 
-      /* ── DETAIL TABLE ── */
+      /* ── DETAIL GRID ── */
       .class-details {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
         border: 1px solid rgba(58,54,96,0.3);
         border-radius: 2px;
         overflow: hidden;
       }
 
-      .class-detail-row {
-        display: flex;
+      .class-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         border-bottom: 1px solid rgba(58,54,96,0.25);
       }
 
-      .class-detail-row:last-child {
+      .class-details-grid:last-child {
         border-bottom: none;
       }
 
-      .class-detail-label {
-        font-size: 0.65rem;
+      .class-details-grid.header {
+        background: rgba(58,54,96,0.15);
+      }
+
+      .class-detail-cell {
+        font-size: 0.88rem;
+        color: var(--light-purple);
+        padding: 12px 14px;
+        line-height: 1.5;
+        border-right: 1px solid rgba(58,54,96,0.25);
+      }
+
+      .class-detail-cell:last-child {
+        border-right: none;
+      }
+
+      .class-detail-cell.header-cell {
+        font-size: 0.6rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: var(--contrast);
-        padding: 12px 16px;
-        width: 38%;
-        flex-shrink: 0;
-        border-right: 1px solid rgba(58,54,96,0.25);
-        display: flex;
-        align-items: center;
-        background: rgba(58,54,96,0.08);
       }
 
-      .class-detail-value {
-        font-size: 0.88rem;
-        color: var(--light-purple);
-        padding: 12px 16px;
-        display: flex;
-        align-items: center;
-        line-height: 1.5;
+      .class-note {
+        font-size: 0.78rem;
+        color: rgba(206,203,253,0.45);
+        line-height: 1.6;
       }
 
       /* ── SPECIALTY ── */
@@ -389,17 +393,15 @@
                 <div class="class-content">
                   <p class="class-description">The perfect first dance experience. This combo class introduces our youngest dancers to the fundamentals of both Ballet and Tap in a single fun, welcoming session. Students begin to develop coordination, rhythm, and a love for movement in a nurturing environment.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">2.5 to 5 years</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Duration</span>
-                      <span class="class-detail-value">45 minutes</span>
-                    </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Pink/White Ballet + Tan Tap</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">2.5 to 5 years</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Pink/White Ballet + Tan Tap</span>
                     </div>
                   </div>
                 </div>
@@ -421,13 +423,15 @@
                 <div class="class-content">
                   <p class="class-description">A classical ballet class that teaches the formalized technique of dance, including specific rules regarding the positions of the arms, feet, and body. Choreography is built on combinations of fundamental movements that form the foundation for all dance styles. Students develop posture, discipline, and grace.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Pink or White Ballet Shoes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">7 to 8 years</span>
+                      <span class="class-detail-cell">30 min</span>
+                      <span class="class-detail-cell">Pink or White</span>
                     </div>
                   </div>
                 </div>
@@ -449,13 +453,15 @@
                 <div class="class-content">
                   <p class="class-description">A rhythmic dance style where the sounds of tap shoes striking the floor become the music. Students learn to use their feet as percussion instruments, developing a strong sense of timing, musicality, and coordination. A timeless and uniquely satisfying style of dance.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">7 years and up — 30 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Tan Mary Janes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">7 years and up</span>
+                      <span class="class-detail-cell">30 min</span>
+                      <span class="class-detail-cell">Tan Mary Janes</span>
                     </div>
                   </div>
                 </div>
@@ -477,17 +483,20 @@
                 <div class="class-content">
                   <p class="class-description">A technical and high-energy dance style performed to popular music. Students build strength and flexibility while working on turns, leaps, and dance technique. Jazz is an ever-evolving style that challenges dancers to be expressive, sharp, and precise.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">7 to 8 years</span>
+                      <span class="class-detail-cell">30 min</span>
+                      <span class="class-detail-cell">Tan Jazz Boots</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Tan Jazz Boots</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">8 years and up</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Tan Jazz Boots</span>
                     </div>
                   </div>
                 </div>
@@ -509,17 +518,20 @@
                 <div class="class-content">
                   <p class="class-description">A high-energy street style of dance performed in sneakers. Less formal than classical styles, Hip Hop focuses on rhythm, personality, and self-expression. Students learn combinations inspired by music videos and popular culture in an upbeat, welcoming environment.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">7 to 8 years — 30 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">9 years and up — 45 minutes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">7 to 8 years</span>
+                      <span class="class-detail-cell">30 min</span>
+                      <span class="class-detail-cell">Sneakers</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Sneakers</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">9 years and up</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Sneakers</span>
                     </div>
                   </div>
                 </div>
@@ -541,23 +553,23 @@
                 <div class="class-content">
                   <p class="class-description">Tumbling takes center stage in this jazz-based class. Students work on acrobatic skills including somersaults, backbends, cartwheels, handstands, and more, all integrated into dynamic jazz choreography. Placement is by skill level. We recommend taking an additional dance class alongside this one.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">5 to 6 years — 30 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">7 years and up — 45 minutes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">5 to 6 years</span>
+                      <span class="class-detail-cell">30 min</span>
+                      <span class="class-detail-cell">Barefoot</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Placement</span>
-                      <span class="class-detail-value">By skill level</span>
-                    </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Barefoot</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">7 years and up</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Barefoot</span>
                     </div>
                   </div>
+                  <p class="class-note">Placement is by skill level. See the Handbook for Acro level requirements.</p>
                 </div>
               </div>
             </div>
@@ -577,13 +589,15 @@
                 <div class="class-content">
                   <p class="class-description">A fusion of ballet, jazz, and contemporary technique. Lyrical Ballet is smoother and more expressive than traditional ballet but not as fast-paced as jazz. Students use movement to interpret music and emotion, developing fluidity, extension, and artistic expression alongside strong technical foundations.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Pink or White Ballet Shoes</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">8 years and up</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Pink or White</span>
                     </div>
                   </div>
                 </div>
@@ -605,13 +619,15 @@
                 <div class="class-content">
                   <p class="class-description">A theatrical dance style that fuses ballet, jazz, and modern technique with acting and storytelling. Students perform to songs from Broadway and musicals, bringing characters and emotions to life through movement. An ideal class for students who love performance and want to combine dance with dramatic expression.</p>
                   <div class="class-details">
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Ages</span>
-                      <span class="class-detail-value">8 years and up — 45 minutes</span>
+                    <div class="class-details-grid header">
+                      <span class="class-detail-cell header-cell">Age</span>
+                      <span class="class-detail-cell header-cell">Duration</span>
+                      <span class="class-detail-cell header-cell">Shoes</span>
                     </div>
-                    <div class="class-detail-row">
-                      <span class="class-detail-label">Shoes</span>
-                      <span class="class-detail-value">Tan Character Shoes (1.5" heel)</span>
+                    <div class="class-details-grid">
+                      <span class="class-detail-cell">8 years and up</span>
+                      <span class="class-detail-cell">45 min</span>
+                      <span class="class-detail-cell">Tan Character (1.5" heel)</span>
                     </div>
                   </div>
                 </div>
