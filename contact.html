@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Center Stage Dance Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+
+      .contact-wrapper {
+        padding: 60px 28px 80px;
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+      }
+
+      /* ── FORM ── */
+      .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .form-section-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      @media (min-width: 600px) {
+        .form-row { flex-direction: row; }
+        .form-row .form-field { flex: 1; }
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-field label {
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--contrast);
+      }
+
+      .form-field input,
+      .form-field textarea,
+      .form-field select {
+        background: rgba(58,54,96,0.15);
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        padding: 14px 16px;
+        color: var(--light-purple);
+        font-size: 0.92rem;
+        font-family: 'Questrial', sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+        width: 100%;
+      }
+
+      .form-field input::placeholder,
+      .form-field textarea::placeholder {
+        color: rgba(206,203,253,0.25);
+      }
+
+      .form-field input:focus,
+      .form-field textarea:focus {
+        border-color: rgba(206,203,253,0.5);
+      }
+
+      .form-field textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .form-submit {
+        display: inline-block;
+        padding: 15px 40px;
+        border: 1px solid var(--light-purple);
+        background: transparent;
+        color: var(--light-purple);
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-family: 'Questrial', sans-serif;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+        align-self: flex-start;
+        border-radius: 2px;
+      }
+
+      .form-submit:hover {
+        background: var(--light-purple);
+        color: var(--black);
+      }
+
+      /* Success / error states */
+      .form-success {
+        display: none;
+        padding: 20px;
+        border: 1px solid rgba(206,203,253,0.3);
+        border-radius: 2px;
+        font-size: 0.92rem;
+        color: var(--light-purple);
+        line-height: 1.7;
+      }
+
+      /* ── INFO SECTION ── */
+      .info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .info-section-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      @media (min-width: 600px) {
+        .info-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .info-item-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--contrast);
+      }
+
+      .info-item-value {
+        font-size: 0.95rem;
+        color: var(--light-purple);
+        line-height: 1.7;
+      }
+
+      .info-item-value a {
+        color: var(--light-purple);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.2s;
+      }
+
+      .info-item-value a:hover {
+        color: var(--contrast);
+      }
+
+      .info-note {
+        font-size: 0.78rem;
+        color: rgba(206,203,253,0.45);
+        line-height: 1.6;
+        margin-top: 2px;
+      }
+
+      /* ── SOCIAL ── */
+      .social-row {
+        display: flex;
+        gap: 16px;
+      }
+
+      .social-link {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(206,203,253,0.55);
+        text-decoration: none;
+        transition: border-color 0.2s, color 0.2s;
+      }
+
+      .social-link:hover {
+        border-color: var(--light-purple);
+        color: var(--light-purple);
+      }
+
+      /* ── MAP ── */
+      .map-section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .map-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+      }
+
+      .map-wrap {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 2px;
+        overflow: hidden;
+        border: 1px solid rgba(58,54,96,0.3);
+      }
+
+      .map-wrap iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: grayscale(30%) invert(90%) hue-rotate(180deg);
+        opacity: 0.85;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel menu-panel-1"></div>
+      <div class="menu-panel menu-panel-2"></div>
+      <div class="menu-panel menu-panel-3"></div>
+      <ul class="menu-links">
+        <li><a href="#" onclick="navigateTo('index.html'); return false;">Home</a></li>
+        <li><a href="#" onclick="navigateTo('about.html'); return false;">About</a></li>
+        <li><a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a></li>
+        <li><a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a></li>
+        <li><a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a></li>
+      </ul>
+      <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
+    </div>
+
+    <header class="page-header">
+      <div class="page-header-content">
+        <h1 class="page-title">Contact Us</h1>
+      </div>
+    </header>
+
+    <div class="contact-wrapper">
+
+      <!-- CONTACT FORM -->
+      <div class="form-section">
+        <p class="form-section-label">Send Us a Message</p>
+
+        <div id="formSuccess" class="form-success">
+          Your message has been sent. We will get back to you as soon as possible.
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/xojbpjov"
+          method="POST"
+          id="contactForm"
+        >
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="What is this regarding?"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your message..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send Message</button>
+        </form>
+      </div>
+
+      <!-- STUDIO INFO -->
+      <div class="info-section">
+        <p class="info-section-label">Studio Information</p>
+        <div class="info-grid">
+
+          <div class="info-item">
+            <p class="info-item-label">Address</p>
+            <p class="info-item-value">
+              32 Main Street<br/>
+              East Haven, CT 06512
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-item-label">Phone</p>
+            <p class="info-item-value">
+              <a href="tel:2034840443">(203) 484-0443</a>
+            </p>
+            <p class="info-note">If we miss your call we will get back to you as soon as possible.</p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-item-label">Email</p>
+            <p class="info-item-value">
+              <a href="mailto:centerstagedancellc@gmail.com">centerstagedancellc@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="info-item">
+            <p class="info-item-label">Follow Us</p>
+            <div class="social-row">
+              <a href="https://www.facebook.com/centerstagedancellc/" target="_blank" class="social-link">Facebook</a>
+              <a href="https://www.youtube.com/channel/UCBgcoxaqnqb8TeLpc9hje0w" target="_blank" class="social-link">YouTube</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <div class="map-section">
+        <p class="map-label">Find Us</p>
+        <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2998.490819483233!2d-72.8662859184895!3d41.27642120791619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7d7b816aa862b%3A0xd1a91c71c390c319!2sCenter%20Stage%20Dance%20Academy%2C%20LLC!5e0!3m2!1sen!2sus!4v1779816196185!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="navigateTo('index.html'); return false;">Home</a>
+        <a href="#" onclick="navigateTo('about.html'); return false;">About</a>
+        <a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a>
+        <a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a>
+        <a href="https://centerstagedanceacademyllc.studioware2.com/" target="_blank">Pay Bill</a>
+      </div>
+      <p class="footer-copy">© 2025 Center Stage Dance Academy LLC · East Haven, CT</p>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }
+      });
+    </script>
+
+  </body>
+</html>
