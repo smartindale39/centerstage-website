@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handbook | Center Stage Dance Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+
+      /* ── ACCORDION ── */
+      .accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-top: 8px;
+      }
+
+      .accordion-item {
+        border-bottom: 1px solid rgba(58,54,96,0.4);
+      }
+
+      .accordion-item:first-child {
+        border-top: 1px solid rgba(58,54,96,0.4);
+      }
+
+      .accordion-trigger {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 24px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        gap: 20px;
+        text-align: left;
+      }
+
+      .accordion-trigger-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .accordion-number {
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        color: var(--contrast);
+        text-transform: uppercase;
+        min-width: 28px;
+      }
+
+      .accordion-title {
+        font-size: clamp(1rem, 3.5vw, 1.25rem);
+        font-weight: bold;
+        color: var(--light-purple);
+        transition: color 0.2s;
+      }
+
+      .accordion-trigger:hover .accordion-title {
+        color: var(--contrast);
+      }
+
+      .accordion-icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        position: relative;
+      }
+
+      .accordion-icon::before,
+      .accordion-icon::after {
+        content: '';
+        position: absolute;
+        background: var(--light-purple);
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(.77,0,.175,1);
+      }
+
+      .accordion-icon::before {
+        width: 100%; height: 1.5px;
+        top: 50%; left: 0;
+        transform: translateY(-50%);
+      }
+
+      .accordion-icon::after {
+        width: 1.5px; height: 100%;
+        left: 50%; top: 0;
+        transform: translateX(-50%);
+      }
+
+      .accordion-item.open .accordion-icon::after {
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 0;
+      }
+
+      .accordion-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(.77,0,.175,1);
+      }
+
+      .accordion-item.open .accordion-body {
+        grid-template-rows: 1fr;
+      }
+
+      .accordion-body-inner {
+        overflow: hidden;
+      }
+
+      .accordion-content {
+        padding: 0 0 32px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .accordion-content p {
+        font-size: 0.92rem;
+        line-height: 1.9;
+        color: rgba(206,203,253,0.7);
+      }
+
+      .accordion-content a {
+        color: var(--light-purple);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* Sub sections within accordion */
+      .sub-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .sub-title {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-top: 8px;
+      }
+
+      /* Lists inside accordion */
+      .handbook-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .handbook-list li {
+        font-size: 0.92rem;
+        line-height: 1.7;
+        color: rgba(206,203,253,0.7);
+        padding-left: 16px;
+        position: relative;
+      }
+
+      .handbook-list li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--dark-purple);
+      }
+
+      .handbook-list li strong {
+        color: var(--light-purple);
+        font-weight: bold;
+      }
+
+      /* Shoe table */
+      .shoe-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+
+      .shoe-table td {
+        padding: 10px 0;
+        font-size: 0.88rem;
+        color: rgba(206,203,253,0.7);
+        border-bottom: 1px solid rgba(58,54,96,0.25);
+        line-height: 1.5;
+      }
+
+      .shoe-table td:first-child {
+        color: var(--light-purple);
+        font-weight: bold;
+        width: 42%;
+        padding-right: 16px;
+      }
+
+      .shoe-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Discount table */
+      .discount-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .discount-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border: 1px solid rgba(58,54,96,0.35);
+        border-radius: 2px;
+      }
+
+      .discount-label {
+        font-size: 0.88rem;
+        color: rgba(206,203,253,0.7);
+      }
+
+      .discount-value {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--light-purple);
+      }
+
+      /* Welcome intro pull */
+      .welcome-pull {
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        color: var(--light-purple);
+        line-height: 1.7;
+        border-left: 2px solid var(--dark-purple);
+        padding-left: 20px;
+      }
+
+      /* Contact strip */
+      .contact-strip {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 20px;
+        background: rgba(58,54,96,0.15);
+        border-radius: 2px;
+        border: 1px solid rgba(58,54,96,0.3);
+      }
+
+      .contact-strip p {
+        font-size: 0.85rem !important;
+        color: rgba(206,203,253,0.6) !important;
+      }
+
+      .contact-strip a {
+        color: var(--light-purple) !important;
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel menu-panel-1"></div>
+      <div class="menu-panel menu-panel-2"></div>
+      <div class="menu-panel menu-panel-3"></div>
+      <ul class="menu-links">
+        <li><a href="#" onclick="navigateTo('index.html'); return false;">Home</a></li>
+        <li><a href="#" onclick="navigateTo('about.html'); return false;">About</a></li>
+        <li><a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a></li>
+        <li><a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a></li>
+        <li><a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a></li>
+      </ul>
+      <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
+    </div>
+
+    <header class="page-header">
+      <div class="page-header-content">
+        <p class="page-eyebrow">Policies · Guidelines · Expectations</p>
+        <h1 class="page-title">Handbook</h1>
+      </div>
+    </header>
+
+    <section class="section">
+      <p class="section-label">Studio Guide</p>
+
+      <div class="accordion">
+
+        <!-- 01 WELCOME -->
+        <div class="accordion-item open">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">01</span>
+              <span class="accordion-title">Welcome</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p class="welcome-pull">Thank you for choosing Center Stage Dance Academy. We are committed to instilling a love for the performing arts in each and every student.</p>
+                <p>We have been open since 2015 and we realize you have choices on the shoreline for dance instruction — we are very pleased you have chosen us. We strive to provide a quality dance education in a positive, nurturing environment and the best experience possible for students and families alike.</p>
+                <p>These guidelines cover tuition, attire, and behavior expectations. Please read through and don't hesitate to reach out with any questions.</p>
+                <div class="contact-strip">
+                  <p>📞 <a href="tel:2034840443">(203) 484-0443</a></p>
+                  <p>✉️ <a href="mailto:centerstagedancellc@gmail.com">centerstagedancellc@gmail.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 MISSION -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">02</span>
+              <span class="accordion-title">Mission Statement</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p>Center Stage Dance Academy is a studio dedicated to teaching correct dance technique, theory, and terminology for beginning through advanced students of all ages. We do not believe in over-inflated prices or excessive performances.</p>
+                <p>We believe in teaching the basics of the art form to provide a solid foundation — both mentally and physically — that enables each student to understand and perform dance at any level and appreciate the true beauty of the art form.</p>
+                <p>Our teaching staff consists of vibrant and energetic instructors who understand what it takes to be a great dancer and make it a priority to pass that knowledge on. Our students are our first priority.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 CLASS STRUCTURE -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">03</span>
+              <span class="accordion-title">Class Structure & Placement</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <div class="sub-section">
+                  <p class="sub-title">Class Structure</p>
+                  <p>All classes begin with barre work or center warm-ups — the basis of the specific dance technique being learned. Each step in the warm-up is used later in center work or across-the-floor combinations. New students will be placed in the lower level class according to age, with ability assessed and advancement at the discretion of the teacher.</p>
+                </div>
+                <div class="sub-section">
+                  <p class="sub-title">Acro Placement Levels</p>
+                  <ul class="handbook-list">
+                    <li><strong>Acro 1</strong> — Beginning level, ages 5 and older</li>
+                    <li><strong>Acro 2</strong> — Must perform a standing backbend and cartwheel</li>
+                    <li><strong>Acro 3</strong> — Must perform a standing backbend and pull up independently, a back walkover, and hold a handstand</li>
+                  </ul>
+                </div>
+                <p>If you have any questions or concerns about your child's placement, please contact the studio directly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 DRESS CODE -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">04</span>
+              <span class="accordion-title">Dress Code</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p>Proper attire is essential — instructors must be able to see body lines to ensure correct form and technique.</p>
+
+                <div class="sub-section">
+                  <p class="sub-title">Ages 5 & Under</p>
+                  <ul class="handbook-list">
+                    <li>Any colored leotard & tights</li>
+                    <li>Skirt (attached or separate)</li>
+                    <li>Dance bags brought into the dance room</li>
+                    <li>Shoes changed in the dance room by teachers</li>
+                    <li>Parents are not allowed to enter the dance room without permission</li>
+                  </ul>
+                </div>
+
+                <div class="sub-section">
+                  <p class="sub-title">Ages 6 & Up</p>
+                  <ul class="handbook-list">
+                    <li>Any colored leotard or unitard</li>
+                    <li>Leggings or shorts</li>
+                    <li>Crop tops or fitted tops</li>
+                    <li>No sweatshirts or hoodies</li>
+                    <li>Dance bags left in the waiting area</li>
+                    <li>No outside street shoes on the dance floor</li>
+                    <li>Shoes changed in the waiting area</li>
+                    <li>Only water bottles allowed in the dance room</li>
+                    <li>Phones must remain in dance bag in the waiting area</li>
+                  </ul>
+                </div>
+
+                <div class="sub-section">
+                  <p class="sub-title">All Students</p>
+                  <ul class="handbook-list">
+                    <li>Hair must be in a high ponytail, braids, or bun before entering class — short hair pulled back from the face</li>
+                    <li>Students may not leave the dance room without permission</li>
+                  </ul>
+                </div>
+
+                <div class="sub-section">
+                  <p class="sub-title">Required Shoes by Class</p>
+                  <table class="shoe-table">
+                    <tr><td>Ballet</td><td>Pink or White</td></tr>
+                    <tr><td>Tap</td><td>Tan Mary Janes</td></tr>
+                    <tr><td>Jazz</td><td>Tan Jazz Boots</td></tr>
+                    <tr><td>Musical Theater</td><td>Tan Character Shoes (1.5" heel)</td></tr>
+                    <tr><td>Hip Hop</td><td>Sneakers</td></tr>
+                    <tr><td>Acro</td><td>Barefoot</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 TUITION -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">05</span>
+              <span class="accordion-title">Tuition & Payments</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p>Center Stage Dance Academy provides a 30-week curriculum divided into 9 monthly payments. Tuition is due the first week of each month and is based on the 9-month season from September to May. Costumes for the annual recital are included in monthly tuition.</p>
+                <div class="sub-section">
+                  <p class="sub-title">Payment Policies</p>
+                  <ul class="handbook-list">
+                    <li>We do not provide monthly invoices — it is the account holder's responsibility to pay on time</li>
+                    <li>Tuition is considered delinquent after the 15th of each month — a <strong>$20 late fee</strong> will be applied</li>
+                    <li>Accounts more than 60 days delinquent may result in suspension of lessons</li>
+                    <li>Accounts must be current before students may receive costumes or participate in performances</li>
+                    <li>Returned checks are subject to a <strong>$25 fee</strong> — all subsequent payments must be made in cash</li>
+                  </ul>
+                </div>
+                <div class="sub-section">
+                  <p class="sub-title">Accepted Payment Methods</p>
+                  <ul class="handbook-list">
+                    <li>Cash or Check</li>
+                    <li><a href="https://www.paypal.com/paypalme/centerstagellc" target="_blank">PayPal</a></li>
+                    <li><a href="https://venmo.com/centerstagedancellc" target="_blank">Venmo</a></li>
+                    <li><a href="https://app.gostudiopro.com/online/index.php?account_id=21229" target="_blank">Studio Pro Parent Portal</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 DISCOUNTS -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">06</span>
+              <span class="accordion-title">Tuition Discounts</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p>Multi-child discounts apply to multiple students within a single household. Child order is based by age, oldest to youngest.</p>
+                <div class="discount-grid">
+                  <div class="discount-row">
+                    <span class="discount-label">2nd Child</span>
+                    <span class="discount-value">5% off</span>
+                  </div>
+                  <div class="discount-row">
+                    <span class="discount-label">3rd Child</span>
+                    <span class="discount-value">10% off</span>
+                  </div>
+                  <div class="discount-row">
+                    <span class="discount-label">4th Child</span>
+                    <span class="discount-value">15% off</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 CODE OF CONDUCT -->
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <div class="accordion-trigger-left">
+              <span class="accordion-number">07</span>
+              <span class="accordion-title">Code of Conduct</span>
+            </div>
+            <div class="accordion-icon"></div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="accordion-content">
+                <p>Our primary goal is for students to have fun while learning dance technique and strong work ethics. We expect all dancers to show respect to themselves, each other, and all instructors.</p>
+                <div class="sub-section">
+                  <p class="sub-title">In the Studio</p>
+                  <ul class="handbook-list">
+                    <li>Arrive on time and prepared with proper attire and shoes</li>
+                    <li>Hair must be pulled up before entering class</li>
+                    <li>No cell phones in the dance room</li>
+                    <li>No gum in class</li>
+                    <li>Only water bottles allowed in the dance room</li>
+                    <li>Do not talk during class unless asking a question</li>
+                    <li>No sitting during class</li>
+                    <li>Do not leave the dance room without permission</li>
+                    <li>Clap at the end of class to thank the instructor</li>
+                    <li>No running, yelling, or rough play in the studio</li>
+                    <li>If injured, notify the instructor before class</li>
+                    <li>If sick, do not come to class</li>
+                    <li>If leaving early, notify the instructor before class begins</li>
+                  </ul>
+                </div>
+                <div class="sub-section">
+                  <p class="sub-title">Respect & Community</p>
+                  <ul class="handbook-list">
+                    <li>Be respectful and kind to instructors, peers, and staff at all times</li>
+                    <li>No obscene language or inappropriate conversations — by parents or dancers</li>
+                    <li>Gossiping among students or parents will not be tolerated</li>
+                    <li>Derogatory comments about the studio, staff, or fellow students — in person, by phone, or on social media — are strictly prohibited</li>
+                    <li>The use of alcohol and/or drugs is strictly forbidden on studio premises</li>
+                  </ul>
+                </div>
+                <p>All students and parents understand that Miss April has the final say on placement and all matters concerning Center Stage Dance Academy. The studio reserves the right to dismiss any student due to inappropriate or disruptive behavior.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="navigateTo('index.html'); return false;">Home</a>
+        <a href="#" onclick="navigateTo('about.html'); return false;">About</a>
+        <a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a>
+        <a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a>
+        <a href="https://centerstagedanceacademyllc.studioware2.com/" target="_blank">Pay Bill</a>
+      </div>
+      <p class="footer-copy">© 2025 Center Stage Dance Academy LLC · East Haven, CT</p>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+      function toggleAccordion(trigger) {
+        const item = trigger.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      }
+    </script>
+  </body>
+</html>

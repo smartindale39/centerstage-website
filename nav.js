@@ -12,9 +12,7 @@ function closeMenu(callback) {
   hamburger.classList.remove('open');
   menuOverlay.classList.remove('open');
   document.body.style.overflow = '';
-  if (callback) {
-    callback();
-  }
+  if (callback) callback();
 }
 
 function navigateTo(url) {
@@ -28,8 +26,8 @@ function navigateTo(url) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
-  const menuOverlay = document.getElementById('menuOverlay');
   const navbar = document.getElementById('navbar');
+  const menuOverlay = document.getElementById('menuOverlay');
 
   hamburger.addEventListener('click', () => {
     hamburger.classList.contains('open') ? closeMenu() : openMenu();

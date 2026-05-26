@@ -4,171 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Center Stage Dance Academy</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
-      :root {
-        --black: #000000;
-        --extra-dark-purple: #151120;
-        --dark-purple: #3A3660;
-        --light-purple: #CECBFD;
-        --contrast: #E0DFC8;
-      }
-
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-
-      body {
-        background: var(--black);
-        color: var(--light-purple);
-        font-family: 'Georgia', serif;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      /* ── NAVBAR ── */
-      nav {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 100;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 24px 0 12px;
-        background: transparent;
-        transition: background 0.4s, transform 0.4s cubic-bezier(.77,0,.175,1);
-      }
-
-      nav.scrolled {
-        background: rgba(21,17,32,0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-
-      nav.hidden { transform: translateY(-100%); }
-
-      .nav-logo {
-        z-index: 200;
-        display: flex;
-        align-items: center;
-        line-height: 0;
-      }
-
-      .nav-logo img {
-        height: 38px;
-        width: auto;
-        max-width: 160px;
-        object-fit: contain;
-        display: block;
-      }
-
-      /* ── HAMBURGER ── */
-      .hamburger {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 6px;
-        z-index: 200;
-      }
-
-      .hamburger span {
-        display: block;
-        width: 28px;
-        height: 1.5px;
-        background: var(--light-purple);
-        transition: all 0.4s cubic-bezier(.77,0,.175,1);
-        transform-origin: center;
-      }
-
-      .hamburger.open span:nth-child(1) {
-        transform: translateY(7.5px) rotate(45deg);
-        background: var(--black);
-      }
-      .hamburger.open span:nth-child(2) { opacity: 0; }
-      .hamburger.open span:nth-child(3) {
-        transform: translateY(-7.5px) rotate(-45deg);
-        background: var(--black);
-      }
-
-      /* ── FULL SCREEN MENU ── */
-      .menu-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 150;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 80px 40px 40px;
-        pointer-events: none;
-        visibility: hidden;
-      }
-
-      .menu-overlay.open {
-        pointer-events: all;
-        visibility: visible;
-      }
-
-      .menu-panel {
-        position: absolute;
-        inset: 0;
-        transform: translateX(100%);
-        transition: transform 0.6s cubic-bezier(.77,0,.175,1);
-      }
-
-      .menu-panel-1 { background: var(--dark-purple);       z-index: -3; transition-delay: 0s; }
-      .menu-panel-2 { background: var(--extra-dark-purple); z-index: -2; transition-delay: 0.08s; }
-      .menu-panel-3 { background: var(--light-purple);      z-index: -1; transition-delay: 0.16s; }
-
-      .menu-overlay.open .menu-panel { transform: translateX(0); }
-
-      .menu-links {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .menu-links li { overflow: hidden; }
-
-      .menu-links a {
-        display: block;
-        font-size: clamp(2.4rem, 10vw, 5rem);
-        font-family: 'Georgia', serif;
-        font-style: italic;
-        color: var(--black);
-        text-decoration: none;
-        letter-spacing: -0.01em;
-        line-height: 1.15;
-        transform: translateY(110%);
-        transition: transform 0.5s cubic-bezier(.77,0,.175,1), color 0.2s;
-      }
-
-      .menu-links a:hover { color: var(--dark-purple); }
-      .menu-overlay.open .menu-links a { transform: translateY(0); }
-
-      .menu-links li:nth-child(1) a { transition-delay: 0.28s; }
-      .menu-links li:nth-child(2) a { transition-delay: 0.35s; }
-      .menu-links li:nth-child(3) a { transition-delay: 0.42s; }
-      .menu-links li:nth-child(4) a { transition-delay: 0.49s; }
-      .menu-links li:nth-child(5) a { transition-delay: 0.56s; }
-
-      .menu-footer {
-        margin-top: auto;
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--extra-dark-purple);
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s 0.6s;
-      }
-
-      .menu-overlay.open .menu-footer {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
       /* ── HERO ── */
       .hero {
         height: 100svh;
@@ -265,7 +102,6 @@
         font-size: 0.7rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
-        font-family: 'Georgia', serif;
         transition: background 0.3s, color 0.3s;
         opacity: 0;
         animation: fadeUp 1s 0.9s ease forwards;
@@ -274,11 +110,6 @@
       .hero-cta:hover {
         background: var(--light-purple);
         color: var(--black);
-      }
-
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to   { opacity: 1; transform: translateY(0); }
       }
 
       .placeholder {
@@ -331,7 +162,7 @@
       </div>
     </section>
 
-    <div class="placeholder">More content coming soon!</div>
+    <div class="placeholder">More content coming soon</div>
 
     <script src="nav.js"></script>
   </body>
