@@ -6,6 +6,7 @@
     <title>Center Stage Dance Academy</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
+
       /* ── HERO ── */
       .hero {
         height: 100svh;
@@ -72,11 +73,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 24px;
+        gap: 28px;
       }
 
       .hero-logo {
-        width: clamp(280px, 80vw, 560px);
+        width: clamp(480px, 132vw, 960px);
         height: auto;
         opacity: 0;
         animation: fadeUp 1s 0.4s ease forwards;
@@ -85,43 +86,275 @@
 
       .hero-sub {
         font-size: clamp(0.65rem, 2.5vw, 0.8rem);
-        letter-spacing: 0.22em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--light-purple);
         opacity: 0;
         animation: fadeUp 1s 0.7s ease forwards;
       }
 
-      .hero-cta {
-        display: inline-block;
+      /* ── SHARED SECTION WRAPPER ── */
+      .home-section {
+        padding: 80px 28px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .home-section-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(58,54,96,0.5);
+        margin-bottom: 40px;
+      }
+
+      .home-rule {
+        width: 100%;
+        height: 1px;
+        background: rgba(58,54,96,0.4);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* ── REGISTRATION SCROLL ── */
+      .reg-section {
+        padding: 80px 0;
+      }
+
+      .reg-section-header {
+        padding: 0 28px;
+        margin-bottom: 32px;
+      }
+
+      .reg-scroll-track {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding: 4px 28px 24px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .reg-scroll-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .reg-card {
+        flex-shrink: 0;
+        width: clamp(260px, 75vw, 320px);
+        scroll-snap-align: start;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition: border-color 0.3s;
+        background: rgba(58,54,96,0.06);
+      }
+
+      .reg-card:hover {
+        border-color: rgba(206,203,253,0.3);
+      }
+
+      .reg-card.featured {
+        border-color: rgba(206,203,253,0.35);
+        background: rgba(206,203,253,0.05);
+      }
+
+      .reg-tag {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--contrast);
+      }
+
+      .reg-card.featured .reg-tag {
+        color: var(--light-purple);
+      }
+
+      .reg-title {
+        font-size: clamp(1.1rem, 4vw, 1.35rem);
+        font-weight: bold;
+        color: var(--light-purple);
+        line-height: 1.2;
+      }
+
+      .reg-fee {
+        font-size: 0.82rem;
+        color: rgba(206,203,253,0.5);
+        letter-spacing: 0.05em;
+      }
+
+      .reg-fee strong {
+        color: var(--light-purple);
+        font-weight: bold;
+      }
+
+      .reg-dates {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .reg-date-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(58,54,96,0.3);
+      }
+
+      .reg-date-item:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      .reg-date {
+        font-size: 0.9rem;
+        color: var(--light-purple);
+        font-weight: bold;
+      }
+
+      .reg-time {
+        font-size: 0.78rem;
+        color: rgba(206,203,253,0.5);
+        letter-spacing: 0.05em;
+      }
+
+      .reg-scroll-hint {
+        padding: 0 28px;
         margin-top: 8px;
-        padding: 14px 36px;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(206,203,253,0.25);
+      }
+
+      /* ── WHY CENTER STAGE ── */
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      @media (min-width: 600px) {
+        .why-grid { grid-template-columns: 1fr 1fr 1fr; }
+      }
+
+      .why-card {
+        padding: 32px 24px;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: border-color 0.3s;
+      }
+
+      .why-card:hover {
+        border-color: rgba(206,203,253,0.25);
+      }
+
+      .why-title {
+        font-size: 1.05rem;
+        font-weight: bold;
+        color: var(--light-purple);
+      }
+
+      .why-body {
+        font-size: 0.88rem;
+        line-height: 1.8;
+        color: rgba(206,203,253,0.6);
+      }
+
+      /* ── CALL TO ACTION ── */
+      .cta-block {
+        padding: 60px 32px;
+        border: 1px solid rgba(58,54,96,0.4);
+        border-radius: 2px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background: rgba(58,54,96,0.08);
+        max-width: 900px;
+        margin: 0 auto 80px;
+      }
+
+      .cta-block-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--contrast);
+      }
+
+      .cta-block h2 {
+        font-size: clamp(1.4rem, 5vw, 2.2rem);
+        font-weight: bold;
+        color: var(--light-purple);
+        line-height: 1.2;
+      }
+
+      .cta-block p {
+        font-size: 0.9rem;
+        color: rgba(206,203,253,0.6);
+        line-height: 1.8;
+        max-width: 500px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        margin-top: 8px;
+      }
+
+      .cta-btn {
+        display: inline-block;
+        padding: 14px 32px;
         border: 1px solid var(--light-purple);
         color: var(--light-purple);
         text-decoration: none;
         font-size: 0.7rem;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         transition: background 0.3s, color 0.3s;
-        opacity: 0;
-        animation: fadeUp 1s 0.9s ease forwards;
+        border-radius: 2px;
       }
 
-      .hero-cta:hover {
+      .cta-btn:hover {
         background: var(--light-purple);
         color: var(--black);
       }
 
-      .placeholder {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--dark-purple);
-        font-size: 0.8rem;
+      /* ── MENU PORTAL BUTTON ── */
+      .menu-portal-btn {
+        display: inline-block;
+        margin-top: 32px;
+        padding: 14px 36px;
+        background: var(--light-purple);
+        color: var(--black);
+        text-decoration: none;
+        font-size: 0.78rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 2px;
+        transition: background 0.2s;
+        text-align: center;
       }
+
+      .menu-portal-btn:hover {
+        background: var(--contrast);
+      }
+
     </style>
   </head>
   <body>
@@ -135,7 +368,7 @@
       </button>
     </nav>
 
-    <div class="menu-overlay" id="menuOverlay">
+<div class="menu-overlay" id="menuOverlay">
       <div class="menu-panel menu-panel-1"></div>
       <div class="menu-panel menu-panel-2"></div>
       <div class="menu-panel menu-panel-3"></div>
@@ -145,10 +378,11 @@
         <li><a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a></li>
         <li><a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a></li>
         <li><a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a></li>
+        <li><a href="https://app.gostudiopro.com/online/index.php?account_id=21229" target="_blank" onclick="closeMenu()">Portal</a></li>
       </ul>
-      <div class="menu-footer">East Haven, CT &nbsp;·&nbsp; (203) 484-0443</div>
     </div>
 
+    <!-- HERO -->
     <section class="hero">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
@@ -157,12 +391,110 @@
       <div class="blob blob-5"></div>
       <div class="hero-content">
         <img class="hero-logo" src="logo.png" alt="Center Stage Dance Academy" />
-        <p class="hero-sub">Under Construction</p>
-        <a href="https://app.gostudiopro.com/online/index.php?account_id=21229" target="_blank" class="hero-cta">Parent Portal</a>
+        <p class="hero-sub">Est. 2015</p>
       </div>
     </section>
 
-    <div class="placeholder">More content coming soon</div>
+    <div class="home-rule"></div>
+
+<!-- REGISTRATION -->
+    <div class="reg-section">
+      <div class="reg-section-header">
+        <p class="home-section-label" style="margin-bottom:0;">Upcoming Registration</p>
+      </div>
+      <div class="reg-scroll-track">
+
+        <div class="reg-card featured">
+          <p class="reg-date">Saturday, June 14th</p>
+          <p class="reg-type">Early Registration</p>
+          <p class="reg-who">Returning Students Only</p>
+          <p class="reg-fee"><strong>FREE</strong></p>
+        </div>
+
+        <div class="reg-card">
+          <p class="reg-date">Wednesday, July 29th</p>
+          <p class="reg-type">Open Registration</p>
+          <p class="reg-who">All Students</p>
+          <p class="reg-fee"><strong>$20</strong> per child</p>
+          <p class="reg-time">5:00pm to 7:00pm</p>
+        </div>
+
+        <div class="reg-card">
+          <p class="reg-date">Saturday, August 8th</p>
+          <p class="reg-type">Open Registration</p>
+          <p class="reg-who">All Students</p>
+          <p class="reg-fee"><strong>$20</strong> per child</p>
+          <p class="reg-time">10:00am to 1:00pm</p>
+        </div>
+
+        <div class="reg-card">
+          <p class="reg-date">Tuesday, August 11th</p>
+          <p class="reg-type">Open Registration</p>
+          <p class="reg-who">All Students</p>
+          <p class="reg-fee"><strong>$20</strong> per child</p>
+          <p class="reg-time">5:00pm to 7:00pm</p>
+        </div>
+
+        <div class="reg-card">
+          <p class="reg-date">Monday, August 24th</p>
+          <p class="reg-type">Open Registration</p>
+          <p class="reg-who">All Students</p>
+          <p class="reg-fee"><strong>$20</strong> per child</p>
+          <p class="reg-time">5:00pm to 7:00pm</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY CENTER STAGE -->
+    <div class="home-section">
+      <p class="home-section-label">Why Center Stage</p>
+      <div class="why-grid">
+
+        <div class="why-card">
+          <p class="why-title">Competition Free</p>
+          <p class="why-body">We are proudly nonparticipants in dance competitions. Our focus is entirely on learning, growth, and putting on an incredible show each spring.</p>
+        </div>
+
+        <div class="why-card">
+          <p class="why-title">Expert Instruction For All Levels</p>
+          <p class="why-body">From first-timers to experienced dancers, our instructors meet every student where they are and build a strong technical foundation from the ground up.</p>
+        </div>
+
+        <div class="why-card">
+          <p class="why-title">Costumes Included</p>
+          <p class="why-body">Recital costumes are included in your monthly tuition. No hidden fees.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="home-rule"></div>
+
+    <!-- CALL TO ACTION -->
+    <div class="cta-block">
+      <p class="cta-block-label">Get Started</p>
+      <h2>Ready to Join Center Stage?</h2>
+      <p>New families are always welcome. Browse our classes or reach out to us directly with any questions about placement or registration.</p>
+      <div class="cta-buttons">
+        <a href="#" onclick="navigateTo('classes.html'); return false;" class="cta-btn">View Classes</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;" class="cta-btn">Contact Us</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="logo.png" alt="Center Stage Dance Academy" />
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="navigateTo('index.html'); return false;">Home</a>
+        <a href="#" onclick="navigateTo('about.html'); return false;">About</a>
+        <a href="#" onclick="navigateTo('classes.html'); return false;">Classes</a>
+        <a href="#" onclick="navigateTo('handbook.html'); return false;">Handbook</a>
+        <a href="#" onclick="navigateTo('contact.html'); return false;">Contact</a>
+        <a href="https://app.gostudiopro.com/online/index.php?account_id=21229" target="_blank">Pay Bill</a>
+      </div>
+      <p class="footer-copy">© 2025 Center Stage Dance Academy LLC · East Haven, CT</p>
+    </footer>
 
     <script src="nav.js"></script>
   </body>

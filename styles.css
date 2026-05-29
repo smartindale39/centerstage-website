@@ -5,6 +5,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 :root {
   --black: #000000;
   --extra-dark-purple: #151120;
@@ -13,19 +14,19 @@
   --contrast: #E0DFC8;
 }
 
-html {
-  font-family: 'Questrial', sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6, p, a, span, li, blockquote, button {
-  font-family: 'Questrial', sans-serif;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Questrial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  font-family: 'Questrial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -33,6 +34,77 @@ body {
   color: var(--light-purple);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, blockquote,
+button, input, textarea, select, label {
+  font-family: 'Questrial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Bold only when explicitly set */
+.bold, strong, b,
+.page-title,
+.bio-name,
+.bio-title-bold,
+.staff-name,
+.value-title,
+.why-title,
+.reg-date,
+.class-name,
+.specialty-name,
+.cta-block h2,
+.register-cta h2,
+.announcement-title,
+.story-pull,
+.section-label,
+.classes-section-label,
+.classes-intro-label,
+.home-section-label,
+.accordion-title,
+.class-trigger .class-name {
+  font-family: 'Questrial', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ── CONTRAST COLOR LABELS ── */
+/* These are the small uppercase labels in var(--contrast) */
+.page-eyebrow,
+.section-label,
+.section-eyebrow,
+.classes-section-label,
+.classes-intro-label,
+.home-section-label,
+.reg-section-header .home-section-label,
+.reg-type,
+.reg-scroll-hint,
+.sub-title,
+.bio-title,
+.staff-role,
+.class-detail-cell.header-cell,
+.specialty-req,
+.register-cta-label,
+.cta-block-label,
+.discount-label,
+.map-label,
+.info-section-label,
+.form-section-label,
+.accordion-number,
+.class-detail-label,
+.info-item-label,
+.mission-label,
+.footer-links a,
+.footer-copy {
+  font-family: 'Questrial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--contrast);
 }
 
 /* ── NAVBAR ── */
@@ -145,7 +217,10 @@ nav.hidden { transform: translateY(-100%); }
 
 .menu-links a {
   display: block;
+  font-family: 'Questrial', sans-serif;
   font-size: clamp(2.4rem, 10vw, 5rem);
+  font-weight: normal;
+  font-style: normal;
   color: var(--black);
   text-decoration: none;
   letter-spacing: -0.01em;
@@ -162,22 +237,7 @@ nav.hidden { transform: translateY(-100%); }
 .menu-links li:nth-child(3) a { transition-delay: 0.42s; }
 .menu-links li:nth-child(4) a { transition-delay: 0.49s; }
 .menu-links li:nth-child(5) a { transition-delay: 0.56s; }
-
-.menu-footer {
-  margin-top: auto;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--extra-dark-purple);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s 0.6s;
-}
-
-.menu-overlay.open .menu-footer {
-  opacity: 1;
-  transform: translateY(0);
-}
+.menu-links li:nth-child(6) a { transition-delay: 0.63s; }
 
 /* ── FOOTER ── */
 footer {
@@ -203,18 +263,19 @@ footer {
 }
 
 .footer-links a {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(206,203,253,0.45);
   text-decoration: none;
   transition: color 0.2s;
+  font-weight: normal;
 }
 
 .footer-links a:hover { color: var(--light-purple); }
 
 .footer-copy {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: rgba(206,203,253,0.2);
   letter-spacing: 0.05em;
 }
@@ -245,13 +306,14 @@ footer {
 }
 
 .page-eyebrow {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--contrast);
   margin-bottom: 16px;
   opacity: 0;
   animation: fadeUp 0.8s 0.2s ease forwards;
+  font-weight: normal;
 }
 
 .page-title {
@@ -271,13 +333,14 @@ footer {
 }
 
 .section-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--contrast);
   margin-bottom: 40px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(58,54,96,0.5);
+  font-weight: normal;
 }
 
 .rule {
@@ -292,4 +355,104 @@ footer {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── REGISTRATION SCROLL ── */
+.reg-section {
+  padding: 80px 0;
+}
+
+.reg-section-header {
+  padding: 0 28px;
+  margin-bottom: 32px;
+}
+
+.reg-scroll-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 4px 28px 24px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.reg-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.reg-card {
+  flex-shrink: 0;
+  width: clamp(200px, 60vw, 240px);
+  scroll-snap-align: start;
+  border: 1px solid rgba(58,54,96,0.4);
+  border-radius: 2px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(58,54,96,0.06);
+  transition: border-color 0.3s;
+}
+
+.reg-card:hover {
+  border-color: rgba(206,203,253,0.3);
+}
+
+.reg-card.featured {
+  border-color: rgba(206,203,253,0.35);
+  background: rgba(206,203,253,0.05);
+}
+
+.reg-date {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--light-purple);
+  line-height: 1.2;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(58,54,96,0.4);
+  margin-bottom: 4px;
+}
+
+.reg-type {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--contrast);
+  font-weight: normal;
+}
+
+.reg-who {
+  font-size: 0.85rem;
+  color: rgba(206,203,253,0.6);
+  font-weight: normal;
+}
+
+.reg-fee {
+  font-size: 0.88rem;
+  color: rgba(206,203,253,0.55);
+  margin-top: 4px;
+  font-weight: normal;
+}
+
+.reg-fee strong {
+  color: var(--light-purple);
+  font-weight: bold;
+}
+
+.reg-time {
+  font-size: 0.78rem;
+  color: rgba(206,203,253,0.4);
+  letter-spacing: 0.04em;
+  font-weight: normal;
+}
+
+.reg-scroll-hint {
+  padding: 0 28px;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(206,203,253,0.2);
+  font-weight: normal;
 }
