@@ -274,6 +274,34 @@ footer {
 
 .footer-links a:hover { color: var(--light-purple); }
 
+.footer-payments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.footer-payments-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(206,203,253,0.35);
+}
+
+.footer-payments a,
+.footer-payments span {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: rgba(206,203,253,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: normal;
+}
+
+.footer-payments a:hover { color: var(--light-purple); }
+
 .footer-copy {
   font-size: 0.75rem;
   color: rgba(206,203,253,0.2);
